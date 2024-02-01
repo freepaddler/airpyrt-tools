@@ -1,6 +1,7 @@
 import argparse
 import logging
 import os.path
+import os
 import sys
 import time
 
@@ -147,8 +148,7 @@ def _cmd_srp_test(client, unused):
 
 
 def main():
-	#TODO: add CLI arg for verbosity
-	logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
+	logging.basicConfig(format='%(levelname)s:%(message)s', level=os.environ.get('LOGLEVEL', 'INFO').upper())
 	
 	parser = _ArgParser()
 	
@@ -197,7 +197,11 @@ def main():
 		}
 	
 	target = args_dict["target"]
+	if not target:
+		target = os.environ.get('TARGET')
 	password = args_dict["password"]
+	if not password:
+		password = os.environ.get('PASSWORD')
 	command_args = {k: v for k, v in args_dict.items() if k in commands and v is not None}
 	
 	if len(command_args) == 0:

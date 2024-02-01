@@ -4,6 +4,33 @@
 
 See LICENSE
 
+### Updates
+[Set airport country](country.md)
+
+#### Environmental Variables
++ `LOGLEVEL` (default `INFO`, alternative `DEBUG`)
++ `TARGET` IP address or hostname of the target router
++ `PASSWORD` router admin password
+
+#### Docker image
+
+```shell
+docker run acp -t 10.10.10.1 -p "password" --getprop syNm
+
+# enable ssh access
+docker run acp -t 10.10.10.1 -p "password" --setprop dbug 0x3000
+docker run acp -t 10.10.10.1 -p "password" --reboot
+
+# disable ssh access
+docker run acp -t 10.10.10.1 -p "password" --setprop dbug 0x0000
+docker run acp -t 10.10.10.1 -p "password" --reboot
+
+# in some firmware version ssh can be disabled only from ssh session
+acp remove dbug
+reboot
+```
+don't forget to switch ssh access off, ports are published in WAN
+
 
 ### Requirements
 
