@@ -18,8 +18,7 @@
 + RUSSIA
 + SAM
 
-#### Country list
-number should be converted to hex
+#### Countries list
 
 + `syRe=0x00000000`	 United States
 + `syRe=0x00000001`	 Canada
